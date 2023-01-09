@@ -34,6 +34,19 @@ public class UserService {
         }
     }
 
+    public User findByName(String name) throws NoFoundException{
+        Optional<User> user = repository.findByName(name);
+        if(!user.isEmpty()) {
+            return user.get();
+        } else {
+            throw new NoFoundException("User not found");
+        }
+    }
+
+    public List<User> findAllByName(String name) {
+        return repository.findAllByName(name);
+    }
+
     public User update(UserRequest userRequest) throws NoFoundException {
         Optional<User> oldUser = repository.findById(userRequest.getId());
         User user = new User();
