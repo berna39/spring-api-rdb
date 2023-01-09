@@ -47,6 +47,10 @@ public class UserService {
         return repository.findAllByName(name);
     }
 
+    public List<User> findAllByNationality(String nationality) {
+        return repository.findAllByNationality(nationality);
+    }
+
     public User update(UserRequest userRequest) throws NoFoundException {
         Optional<User> oldUser = repository.findById(userRequest.getId());
         User user = new User();

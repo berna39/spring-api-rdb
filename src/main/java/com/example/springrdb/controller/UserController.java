@@ -7,11 +7,9 @@ import com.example.springrdb.exception.NoFoundException;
 import com.example.springrdb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Constraint;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -48,8 +46,13 @@ public class UserController {
     }
 
     @PostMapping("/findAllByName")
-    public ResponseEntity<List<User>> findallByName(@RequestBody UserQuery userQuery) {
+    public ResponseEntity<List<User>> findAllByName(@RequestBody UserQuery userQuery) {
         return ResponseEntity.ok(service.findAllByName(userQuery.getName()));
+    }
+
+    @PostMapping("/findAllByNationality")
+    public ResponseEntity<List<User>> findAllByNationality(@RequestBody UserQuery userQuery) {
+        return ResponseEntity.ok(service.findAllByNationality(userQuery.getNationality()));
     }
 
     @DeleteMapping("/{id}")
